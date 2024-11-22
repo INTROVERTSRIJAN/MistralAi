@@ -84,7 +84,7 @@ async def handle_button_click(client, callback_query):
         )
         about_keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("🔙 ʙᴀᴄᴋ", callback_data="help"),
-             InlineKeyboardButton("", url="")]
+             InlineKeyboardButton("ᴛʀʏ ғʟᴏʀᴀ", url="https://t.me/FloraXRobot")]
         ])
         await edit_message(client, callback_query, about_message, about_keyboard)
 
