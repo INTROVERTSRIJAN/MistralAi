@@ -6,7 +6,7 @@ from database import *
 
 api = "https://horridapi.onrender.com/search"
 
-@Client.on_message(filters.command("scan_ph"))
+@Client.on_message(filters.command("scan"))
 async def scan_ph(client, message):
     if FSUB and not await get_fsub(client, message):
         return
@@ -21,7 +21,7 @@ async def scan_ph(client, message):
 
     query = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""    
     if not query:
-        return await message.reply_text("❗ Please provide a query! For example: `/scan_ph tell me about this image`")
+        return await message.reply_text("❗ Please provide a query! For example: `/scan tell me about this image`")
 
     k = await message.reply_text(f"🔍 {message.from_user.mention}, Please wait while I check...")
 
