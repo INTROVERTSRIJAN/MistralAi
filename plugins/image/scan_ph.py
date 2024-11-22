@@ -6,7 +6,7 @@ from database import *
 
 api = "https://horridapi.onrender.com/search"
 
-@Client.on_message(filters.command("scan"))
+@Client.on_message(filters.command("scan_ph"))
 async def scan_ph(client, message):
     if FSUB and not await get_fsub(client, message):
         return
