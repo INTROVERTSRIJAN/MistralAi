@@ -34,7 +34,7 @@ async def ask_query_command(client: Client, message: Message):
     if len(query) > 1:
         await send_typing_action(client, message.chat.id)
         reply = ask_query(query[1])
-        await message.reply_text(f"{message.from_user.mention}, {reply} 🚀")
+        await message.reply_text(f"{reply}")
     else:
         await message.reply_text("Write /ask and your query next to it.")
 
