@@ -11,10 +11,10 @@ async def start_command(client, message):
         return
 
     welcome_message = (
-        "**👋 Welcome to Response By Ai!**\n\n"
-        "🤖 I'm your personal AI assistant, crafted with love by ⏤͟͟͞͞ 🇮🇳 𝐓ʜᴇ 𝐂ᴀᴘᴛᴀɪɴ.\n\n"
-        "✨ **Here’s what I can do for you:**\n"
-        "Just click the buttons below to get started on this exciting journey! 🚀"
+        "**👋 Hello! I'm Mistral AI. **\n\n"
+        "Another random Telegram AI assistant to make your queries fulfill.\n\n"
+        "✨ **Just remember, I'm here to listen you anytime.** ❤️‍🩹\n"
+        "Just click the buttons below and see what I can do! 🚀"
     )
 
     keyboard = InlineKeyboardMarkup([
