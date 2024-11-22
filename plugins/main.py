@@ -74,17 +74,17 @@ async def handle_button_click(client, callback_query):
     elif callback_query.data == "about":
         about_message = (
             "**ℹ️ About This Bot**\n\n"
-            "👤 **Owner:** ⏤͟͟͞͞ 🇮🇳𝐓ʜᴇ 𝐂ᴀᴘᴛᴀɪɴ's </>\n"
+            "👤 **Owner:** [Sʀɪᴊᴀɴ ⚡](https://t.me/SrijanMajumdar)\n"
             "🤖 **Functionality:**\n"
             "- Fast and accurate answers to your questions! ⚡\n"
             "- Generate beautiful images based on your prompts! 🎨\n"
             "- Engage in chat to learn and explore more! 💬\n\n"
-            "🌐 **Powered by:** [Code Search API](https://codesearch.pages.dev/)\n\n"
+            "🌐 **Powered by:** Code Search API\n\n"
             "🚀 Join me in this adventure and let's explore the limitless possibilities together!"
         )
         about_keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("🔙 ʙᴀᴄᴋ", callback_data="help"),
-             InlineKeyboardButton("🔗 ʀᴇᴘᴏ", url="https://github.com/itzAsuraa/ResponseByAi")]
+             InlineKeyboardButton("", url="")]
         ])
         await edit_message(client, callback_query, about_message, about_keyboard)
 
