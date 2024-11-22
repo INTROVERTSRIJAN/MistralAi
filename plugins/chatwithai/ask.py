@@ -16,7 +16,7 @@ def ask_query(query: str) -> str:
         # Parse JSON response
         data = response.json()  # Convert the response to a JSON object
         # Extract and return the "data" field if present
-        return data.get("data", "⚠️ Error: Unexpected response format")
+        return data.get("data", "⚠️ I think there's something is wrong with the server.")
     except requests.exceptions.RequestException as e:
         return f"⚠️ Error: {str(e)}"
     except json.JSONDecodeError:
@@ -36,7 +36,7 @@ async def ask_query_command(client: Client, message: Message):
         reply = ask_query(query[1])
         await message.reply_text(f"{message.from_user.mention}, {reply} 🚀")
     else:
-        await message.reply_text("📝 Please provide a query to ask GPT-4. Don't be shy, let's chat! 🤖💬.")
+        await message.reply_text("Write /ask and your query next to it.")
 
 @Client.on_message(filters.mentioned & filters.group)
 async def handle_mention(client: Client, message: Message):
