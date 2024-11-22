@@ -9,7 +9,7 @@ def generate_long_query(query):
 @Client.on_message(filters.command("draw"))
 async def draw_image(client, message):
     if len(message.command) < 2:
-        await message.reply_text("Please provide a query to generate an image. 😊")
+        await message.reply_text("To generate an image, write /draw and your prompt next to it. 😊")
         return
 
     # Generate a long query for better image results
@@ -17,7 +17,7 @@ async def draw_image(client, message):
     query = generate_long_query(user_query)
 
     # Send initial message
-    wait_message = await message.reply_text("**Generating image, please wait...** ⏳")
+    wait_message = await message.reply_text("⏳")
 
     # Asynchronous request using aiohttp
     url = f"https://text2img.codesearch.workers.dev/?prompt={query}"
@@ -31,7 +31,7 @@ async def draw_image(client, message):
                         await wait_message.delete()  # Delete wait message
                         await message.reply_photo(photo=image_url, caption=f"Generated Image for: {user_query} 🖼️")
                     else:
-                        await wait_message.edit_text("No images were returned. Please try again. ❌")
+                        await wait_message.edit_text("Oops! Something's wrong here! ❌")
                 else:
                     await wait_message.edit_text("Error: Unable to generate image at this time. Please try later. 🚫")
     except Exception as e:
