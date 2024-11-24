@@ -13,7 +13,6 @@ async def start_command(client, message):
     welcome_message = (
         "**👋 Hello! I'm Mistral AI. **\n\n"
         "Another random Telegram AI assistant to make your queries fulfill.\n\n"
-        "✨ **Just remember, I'm here to listen you anytime.** ❤️‍🩹\n"
         "Just click the buttons below and see what I can do! 🚀"
     )
 
@@ -41,8 +40,7 @@ async def handle_button_click(client, callback_query):
         welcome_message = (
         "**👋 Hello! I'm Mistral AI. **\n\n"
         "Another random Telegram AI assistant to make your queries fulfill.\n\n"
-        "✨ **Just remember, I'm here to listen you anytime.** ❤️‍🩹\n"
-        "Just click the buttons below and see what I can do! 🚀"
+        "✨ **Just remember, I'm here to listen you anytime.** ☺️❤️‍🩹\n"
         )
 
         keyboard = InlineKeyboardMarkup([
@@ -60,7 +58,7 @@ async def handle_button_click(client, callback_query):
              InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
         ])
         chat_message = (
-            "**💬 Let’s Dive into a Conversation with Mistral AI!**\n\n ✨**Ready to explore?** Just use the commands below to unlock endless possibilities! ☀️\n\n✔️ **Got a question?** \n Send your question using **/ask**, and get valuable answers from Mistral! 💡\n\nJoin the conversation and see what wonders await!"
+            "**💬 Let’s Dive into a Conversation with Mistral AI!**\n\n ✨ **Got a question?** \n Send your question using **/ask**, and get valuable answers from Mistral! 💡\n\nJoin the conversation and see what wonders await!"
         )
         await edit_message(client, callback_query, chat_message, chat_keyboard)
 
@@ -69,7 +67,7 @@ async def handle_button_click(client, callback_query):
             [InlineKeyboardButton("🔙 ʙᴀᴄᴋ", callback_data="help"),
              InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
         ])
-        await edit_message(client, callback_query, "**🖼️ Your Creative Journey Starts Here!**\n\n\n**🎨 Unleash Your Creativity!** \n Type **/draw** followed by your vision, like “A cat on rooftop,” and watch as your imagination comes to life with stunning AI-generated artwork! ✨\n\n**📸 Transform Your Ideas!** \nGet ready for Image, you’ll be able to type **/scan** along with your image description to let our AI create detailed descriptions and captivating images based on your prompts. 🔍✨\n\n\n**Get started now and see what magic awaits!**", image_keyboard)
+        await edit_message(client, callback_query, "**🖼️ Your Creative Journey Starts Here!**\n\n\n**🎨 Unleash Your Creativity!** \n Type **/draw** followed by your vision, like “A cat on rooftop,” and watch as your imagination comes to life with stunning AI-generated artwork! ✨\n\n **Get started now and see what magic awaits!**", image_keyboard)
 
     elif callback_query.data == "about":
         about_message = (
