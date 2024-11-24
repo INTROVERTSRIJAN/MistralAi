@@ -7,15 +7,15 @@ import os
 # Access environment variables
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 OWNER_ID = int(os.getenv("OWNER_ID"))
-MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URL = os.getenv("MONGO_URL")
 
 # Check if environment variables are loaded correctly
-if not BOT_TOKEN or not OWNER_ID or not MONGO_URI:
-    print("Error: Make sure BOT_TOKEN, OWNER_ID, and MONGO_URI are set as environment variables!")
+if not BOT_TOKEN or not OWNER_ID or not MONGO_URL:
+    print("Error: Make sure BOT_TOKEN, OWNER_ID, and MONGO_URL are set as environment variables!")
     exit(1)
 
 # Initialize MongoDB client
-mongo_client = MongoClient(MONGO_URI)
+mongo_client = MongoClient(MONGO_URL)
 db = mongo_client["telegram_bot"]
 users_collection = db["users"]  # Collection to store user IDs
 
@@ -31,7 +31,7 @@ async def save_user(client: Client, message: Message):
     if not users_collection.find_one({"user_id": user_id}):
         users_collection.insert_one({"user_id": user_id})
         print(f"New user added: {user_id}")
-    await message.reply("👋🏻☺️❤️")
+    await message.reply("Let's continue the chat ❤️")
 
 
 # Broadcast message (restricted to bot owner)
@@ -74,4 +74,4 @@ async def broadcast_message(client: Client, message: Message):
 
 if __name__ == "__main__":
     app.run()
-  
+    
