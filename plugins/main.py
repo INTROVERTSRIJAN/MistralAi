@@ -1,8 +1,13 @@
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import Client, filters, enums,
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from info import *
 from database import *
-from plugins.broadcast.broadcast import add_served_user
+from plugins.broadcast.broadcast import add_served_user, get_served_users, usersdb
+import datetime
+import time
+import asyncio
+from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
+from info import OWNER_ID
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start_command(client, message):
@@ -95,3 +100,55 @@ async def edit_message(client, callback_query, caption, reply_markup):
         print("Error editing message caption:", e)
 
     await client.answer_callback_query(callback_query.id)
+
+@Client.on_message(filters.command(["stats", "users"]) & filters.user(OWNER_ID))
+async def start_command(client, message):
+    users = len(await get_served_users())
+    await message.reply_text(f"Current stats of Mistral AI :\n\n {users} users")
+
+@Client.on_message(filters.command(["broadcast", "stat"]) & filters.user(OWNER_ID))
+async def broadcast(_, m: Message):
+    if m.text == "/stat":
+        total_users = len(await get_served_users())
+        return await m.reply(f"ᴛᴏᴛᴀʟ ᴜsᴇʀs: {total_users}")
+    
+    b_msg = m.reply_to_message
+    sts = await m.reply_text("ʙʀᴏᴀᴅᴄᴀꜱᴛɪɴɢ...")
+    users = await get_served_users()
+    total_users = len(users)
+    done, failed, blocked, success = 0, 0, 0, 0
+    start_time = time.time()
+    
+    for user in users:
+        user_id = int(user['user_id'])
+        try:
+            await b_msg.copy(chat_id=user_id)
+            success += 1
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
+            await b_msg.copy(chat_id=user_id)
+            success += 1
+        except InputUserDeactivated:
+            usersdb.delete_many({'user_id': user_id})
+            failed += 1
+        except UserIsBlocked:
+            blocked += 1
+        except PeerIdInvalid:
+            usersdb.delete_many({'user_id': user_id})
+            failed += 1
+        except Exception:
+            failed += 1
+        done += 1
+        
+        if not done % 20:
+            await sts.edit(
+                f"ʙʀᴏᴀᴅᴄᴀsᴛ ɪɴ ᴘʀᴏɢʀᴇss:\n\nᴛᴏᴛᴀʟ ᴜsᴇʀs {total_users}\nᴄᴏᴍᴘʟᴇᴛᴇᴅ: {done} / {total_users}\nsᴜᴄᴄᴇss: {success}\nʙʟᴏᴄᴋᴇᴅ: {blocked}\nғᴀɪʟᴇᴅ: {failed}\n\nʙᴏᴛ - {Anony.mention}"
+            )
+    
+    time_taken = datetime.timedelta(seconds=int(time.time() - start_time))
+    await sts.delete()
+    await m.reply_text(
+        f"ʙʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇᴅ:\nᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ {time_taken} sᴇᴄᴏɴᴅs.\n\nᴛᴏᴛᴀʟ ᴜsᴇʀs {total_users}\nᴄᴏᴍᴘʟᴇᴛᴇᴅ: {done} / {total_users}\nsᴜᴄᴄᴇss: {success}\nʙʟᴏᴄᴋᴇᴅ: {blocked}\nғᴀɪʟᴇᴅ: {failed}\n\nʙᴏᴛ - {Anony.mention}",
+        quote=True
+    )
+
