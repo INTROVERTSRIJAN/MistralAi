@@ -2,9 +2,11 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from info import *
 from database import *
+from plugins.broadcast.broadcast import add_served_user
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start_command(client, message):
+    await add_served_user(message.from_user.id)
     userMention = message.from_user.mention() 
     # Check for forced subscription requirement
     if FSUB and not await get_fsub(client, message):
