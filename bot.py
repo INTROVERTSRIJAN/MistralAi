@@ -1,12 +1,12 @@
 import logging
 from pyrogram import Client
-from info import API_ID, API_HASH, BOT_TOKEN, OWNER_ID
+from info import API_ID, API_HASH, BOT_TOKEN, OWNER_ID, MONGO_DB_URI
 import pymongo, os
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-mongo = pymongo.MongoClient(config.MONGO_DB_URI)
+mongo = pymongo.MongoClient(MONGO_DB_URI)
 db = mongo.MistralRobot
 
 class Bot(Client):
