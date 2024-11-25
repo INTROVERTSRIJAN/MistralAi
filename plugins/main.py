@@ -9,28 +9,44 @@ import asyncio
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
 from info import OWNER_ID
 
-@Client.on_message(filters.command("start") & filters.incoming)
-async def start_command(client, message):
+@Client.on_message(filters.command("start") & filters.private)
+async def start_command(client, message: Message):
+    # Add the user to the served users list
     await add_served_user(message.from_user.id)
-    userMention = message.from_user.mention() 
+
+    # Mention the user
+    userMention = message.from_user.mention()
+
     # Check for forced subscription requirement
     if FSUB and not await get_fsub(client, message):
         return
 
+    # Define the welcome message
     welcome_message = (
-        "**👋 Hello! I'm Mistral AI. **\n\n"
-        "Another random Telegram AI assistant to make your queries fulfill.\n\n"
+        f"**👋 Hello {userMention}! I'm Mistral AI.**\n\n"
+        "Another random Telegram AI assistant to fulfill your queries.\n\n"
         "Just click the buttons below and see what I can do! 🚀"
     )
 
+    # Define the keyboard
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("🌟 ʜᴇʟᴘ", callback_data="help"),
-         InlineKeyboardButton("ℹ️ ᴀʙᴏᴜᴛ", callback_data="about")],
-        [InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇ", url="https://t.me/OriginalSrijan"),
-         InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
+        [InlineKeyboardButton("🌟 Help", callback_data="help"),
+         InlineKeyboardButton("ℹ️ About", callback_data="about")],
+        [InlineKeyboardButton("📢 Update", url="https://t.me/OriginalSrijan"),
+         InlineKeyboardButton("🛠️ Support", url="https://t.me/OSDiscussion")]
     ])
 
-    await client.send_photo(chat_id=message.chat.id, photo="https://i.ibb.co/QvY361m/file-2813.jpg", caption=welcome_message, reply_markup=keyboard)
+    # Send the welcome photo with the message
+    try:
+        await client.send_photo(
+            chat_id=message.chat.id,
+            photo="https://i.ibb.co/QvY361m/file-2813.jpg",
+            caption=welcome_message,
+            reply_markup=keyboard
+        )
+    except Exception as e:
+        print(f"Error in /start command: {e}")
+        await message.reply_text("⚠️ Something went wrong. Please try again later.")
 
 @Client.on_callback_query()
 async def handle_button_click(client, callback_query):
