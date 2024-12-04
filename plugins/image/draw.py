@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 import aiohttp
 from info import *
+from database import *
 
 # Generate a detailed prompt for image creation
 def generate_long_query(query):
