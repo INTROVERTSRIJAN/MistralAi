@@ -1,5 +1,5 @@
 #devggn
-
+from pyrogram import Client
 import os, re, subprocess, sys, traceback
 from inspect import getfullargspec
 from io import StringIO
