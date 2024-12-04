@@ -1,6 +1,10 @@
+from random import choice
 from pyrogram.errors import UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from info import *
+
+# List of negative/disappointed emojis
+NEGATIVE_EMOJIS = ["😔", "🙄", "😢", "😠", "😒", "😕", "😞", "😡"]
 
 async def get_fsub(bot, message):
     target_channel_id = AUTH_CHANNEL  # Your channel ID
@@ -21,6 +25,11 @@ async def get_fsub(bot, message):
             "ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴀɴᴅ ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ, ᴛʜᴇɴ ʏᴏᴜ ᴄᴀɴ ᴄᴏɴᴛɪɴᴜᴇ ᴜsɪɴɢ ᴍᴇ 😊\n\n",
             reply_markup=InlineKeyboardMarkup(keyboard),
         )
+
+        # React to the user's message with a random disappointed emoji
+        emoji = choice(NEGATIVE_EMOJIS)
+        await message.react(emoji)
+
         return False
     else:
         return True
