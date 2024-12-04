@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from info import *
 
 # List of negative/disappointed emojis
-NEGATIVE_EMOJIS = ["😔", "🙄", "😢", "😠", "😒", "😕", "😞", "😡"]
+NEGATIVE_EMOJIS = ["😔", "🙄", "😢", "🤡", "😒", "😕", "😞", "😡"]
 
 async def get_fsub(bot, message):
     target_channel_id = AUTH_CHANNEL  # Your channel ID
