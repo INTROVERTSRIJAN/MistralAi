@@ -8,6 +8,8 @@ def generate_long_query(query):
 
 @Client.on_message(filters.command("draw"))
 async def draw_image(client, message):
+    if FSUB and not await get_fsub(client, message):
+        return
     if len(message.command) < 2:
         await message.reply_text("To generate an image, write /draw and your prompt next to it. 😊")
         return
