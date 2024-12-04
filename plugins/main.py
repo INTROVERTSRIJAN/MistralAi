@@ -11,9 +11,9 @@ async def start_command(client, message):
         return
 
     welcome_message = (
-        "**👋 Hello! I'm Mistral AI. **\n\n"
-        "Another random Telegram AI assistant to make your queries fulfill.\n\n"
-        "Just click the buttons below and see what I can do! 🚀"
+        "**ɪ'ᴍ ᴍɪsᴛʀᴀʟ ᴀɪ **\n\n"
+        "ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɪ ᴀssɪsᴛᴀɴᴛ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ɪɴ ᴛʀᴏᴜʙʟᴇs.\n\n"
+        "ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴡʜᴀᴛ ɪ ᴄᴀɴ ᴅᴏ 🚀"
     )
 
     keyboard = InlineKeyboardMarkup([
@@ -38,9 +38,9 @@ async def handle_button_click(client, callback_query):
 
     elif callback_query.data == "start":
         welcome_message = (
-        "**👋 Hello! I'm Mistral AI. **\n\n"
-        "Another random Telegram AI assistant to make your queries fulfill.\n\n"
-        "✨ **Just remember, I'm here to listen you anytime.** ☺️❤️‍🩹\n"
+        "**ɪ'ᴍ ᴍɪsᴛʀᴀʟ ᴀɪ **\n\n"
+        "ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɪ ᴀssɪsᴛᴀɴᴛ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ɪɴ ᴛʀᴏᴜʙʟᴇs.\n\n"
+        "✨ **ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴡʜᴀᴛ ɪ ᴄᴀɴ ᴅᴏ** ☺️❤️‍🩹\n"
         )
 
         keyboard = InlineKeyboardMarkup([
