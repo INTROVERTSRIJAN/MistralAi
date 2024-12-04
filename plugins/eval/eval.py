@@ -25,7 +25,7 @@ async def edit_or_reply(msg, **kwargs):
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-@app.on_edited_message(
+@Client.on_edited_message(
     filters.command(["eval", "x"])
     & filters.user(OWNER_ID)
     & ~filters.forwarded
