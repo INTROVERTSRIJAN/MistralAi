@@ -8,7 +8,7 @@ from database.users_db import get_users, add_user, get_user
 
 
 
-@app.on_message(group=10)
+@bot.on_message(group=10)
 async def chat_watcher_func(_, message):
     try:
         if message.from_user:
@@ -19,7 +19,7 @@ async def chat_watcher_func(_, message):
         pass
 
 
-@app.on_message(filters.command("stats"))
+@bot.on_message(filters.command("stats"))
 async def stats(client, message):
     users = len(await get_users())
     await message.reply_text(f"""
