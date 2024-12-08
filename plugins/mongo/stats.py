@@ -1,6 +1,6 @@
 #devggn
 
-from bot import bot
+from bot import Bot
 from pyrogram import filters
 from info import OWNER_ID
 from database.users_db import get_users, add_user, get_user
@@ -8,7 +8,7 @@ from database.users_db import get_users, add_user, get_user
 
 
 
-@bot.on_message(group=10)
+@Bot.on_message(group=10)
 async def chat_watcher_func(_, message):
     try:
         if message.from_user:
@@ -19,7 +19,7 @@ async def chat_watcher_func(_, message):
         pass
 
 
-@bot.on_message(filters.command("stats"))
+@Bot.on_message(filters.command("stats"))
 async def stats(client, message):
     users = len(await get_users())
     await message.reply_text(f"""
