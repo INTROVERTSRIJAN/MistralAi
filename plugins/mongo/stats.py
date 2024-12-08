@@ -1,6 +1,6 @@
 #devggn
 
-from ResponseByAI import app
+from pyrogram import app
 from pyrogram import filters
 from info import OWNER_ID
 from database.users_db import get_users, add_user, get_user
