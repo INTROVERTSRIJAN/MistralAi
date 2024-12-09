@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from info import *
 from database import *
+import random
 
 photo = [
     'https://telegra.ph/file/a5a2bb456bf3eecdbbb99.mp4',
