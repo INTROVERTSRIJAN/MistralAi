@@ -4,7 +4,7 @@ from info import *
 from database import *
 import random
 
-photo = [
+pic = [
     'https://graph.org/file/029d180541fd41b22f53e-0aac1c97f29b92f514.jpg',
     'https://graph.org/file/0f4f50c3e2aca115c77af-255637f91a2200c7e9.jpg',
     'https://graph.org/file/1ee37151e064ecc202dbd-d0da242165e9934fc1.jpg',
@@ -36,8 +36,7 @@ async def start_command(client, message):
          InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
     ])
 
-await client.send_photo(chat_id=message.chat.id, photo=img, caption=welcome_message, reply_markup=keyboard)
-    img = random.choice(photo)
+await client.send_photo(chat_id=message.chat.id, photo=random.choice(pic), caption=welcome_message, reply_markup=keyboard)
 
 @Client.on_callback_query()
 async def handle_button_click(client, callback_query):
