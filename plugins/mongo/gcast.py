@@ -1,8 +1,8 @@
 import asyncio
 from pyrogram import filters
-from config import OWNER_ID
-from devgagan import app
-from devgagan.core.mongo.people_db import get_people  # Updated to match "people" collection
+from info import OWNER_ID
+from bot import Bot
+from database.people_db import get_people  # Updated to match "people" collection
 
 async def send_msg(user_id, message):
     try:
@@ -19,7 +19,7 @@ async def send_msg(user_id, message):
     except Exception as e:
         return 500, f"{user_id} : {e}\n"
 
-@app.on_message(filters.command("gcast") & filters.user(OWNER_ID))
+@Bot.on_message(filters.command("gcast") & filters.user(OWNER_ID))
 async def broadcast(_, message):
     """
     Broadcasts a message to all users in the people collection.
@@ -51,7 +51,7 @@ async def broadcast(_, message):
             f"**Failed to send to** `{failed_people}` **users.**"
         )
 
-@app.on_message(filters.command("announce") & filters.user(OWNER_ID))
+@Bot.on_message(filters.command("announce") & filters.user(OWNER_ID))
 async def announce(_, message):
     """
     Forwards a message to all users in the people collection.
