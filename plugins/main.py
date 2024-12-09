@@ -35,7 +35,6 @@ async def start_command(client, message):
         [InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇ", url="https://t.me/OriginalSrijan"),
          InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
     ])
-
 await client.send_photo(chat_id=message.chat.id, photo=random.choice(pic), caption=welcome_message, reply_markup=keyboard)
 
 @Client.on_callback_query()
