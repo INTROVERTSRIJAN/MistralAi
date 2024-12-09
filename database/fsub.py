@@ -27,7 +27,7 @@ async def get_fsub(bot, message):
         )
 
         # React to the user's message with a random disappointed emoji
-        emoji = choice(NEGATIVE_EMOJIS)
+        emoji = random.choice(NEGATIVE_EMOJIS)
         await message.react(emoji)
 
         return False
