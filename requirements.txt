@@ -10,3 +10,4 @@ pyrofork
 aiohttp
 Mangandi
 datetime
+python-telegram-bot
