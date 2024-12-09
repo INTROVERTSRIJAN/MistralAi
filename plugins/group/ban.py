@@ -1,37 +1,32 @@
-from telegram import Update, ParseMode
-from telegram.ext import CallbackContext, CommandHandler
-from telegram.error import BadRequest
-from telegram.utils.helpers import mention_html
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
+# Create your bot instance
+app = Client("my_bot")
 
-def ban(update: Update, context: CallbackContext) -> None:
-    chat = update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
-
+# /ban command
+@app.on_message(filters.command("ban") & filters.group)
+async def ban_member(client: Client, message: Message):
     # Check if the user is an admin
-    member = chat.get_member(user.id)
-    if not member.status in ["administrator", "creator"]:
-        message.reply_text("Only admins can use this command.")
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if not chat_member.can_restrict_members:
+        await message.reply("You need to be an admin with permission to restrict members to use this command.")
         return
 
-    # Check if the command is used as a reply
+    # Ensure the command is a reply
     if not message.reply_to_message:
-        message.reply_text("Reply to a user's message to ban them.")
+        await message.reply("You need to reply to a user's message to ban them.")
         return
 
-    target_user = message.reply_to_message.from_user
+    # Get the user to ban
+    user_to_ban = message.reply_to_message.from_user
 
     try:
-        chat.ban_member(target_user.id)
-        message.reply_text(
-            f"{mention_html(target_user.id, target_user.first_name)} has been banned.",
-            parse_mode=ParseMode.HTML,
-        )
-    except BadRequest as e:
-        message.reply_text(f"Failed to ban the user: {e.message}")
+        # Ban the user
+        await client.kick_chat_member(message.chat.id, user_to_ban.id)
+        await message.reply(f"Banned {user_to_ban.mention} successfully!")
+    except Exception as e:
+        await message.reply(f"Failed to ban {user_to_ban.mention}. Error: {str(e)}")
 
-
-# Add the handler to your dispatcher
-handler = CommandHandler("ban", ban)
-dispatcher.add_handler(handler)
+# Run the bot
+app.run()
