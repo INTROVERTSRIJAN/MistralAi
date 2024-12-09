@@ -1,7 +1,7 @@
-from random import choice
 from pyrogram.errors import UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from info import *
+import random
 
 # List of negative/disappointed emojis
 NEGATIVE_EMOJIS = ["😔", "🙄", "😢", "🤡", "😒", "😕", "😞", "😡"]
