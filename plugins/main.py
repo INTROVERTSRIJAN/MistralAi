@@ -36,8 +36,8 @@ async def start_command(client, message):
          InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ", url="https://t.me/OSDiscussion")]
     ])
 
-    img = random.choice(photo)
 await client.send_photo(chat_id=message.chat.id, photo=img, caption=welcome_message, reply_markup=keyboard)
+    img = random.choice(photo)
 
 @Client.on_callback_query()
 async def handle_button_click(client, callback_query):
