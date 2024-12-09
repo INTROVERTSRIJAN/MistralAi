@@ -5,17 +5,15 @@ from database import *
 import random
 
 photo = [
-    'https://telegra.ph/file/a5a2bb456bf3eecdbbb99.mp4',
-    'https://telegra.ph/file/03c6e49bea9ce6c908b87.mp4',
-    'https://telegra.ph/file/9ebf412f09cd7d2ceaaef.mp4',
-    'https://telegra.ph/file/293cc10710e57530404f8.mp4',
-    'https://telegra.ph/file/506898de518534ff68ba0.mp4',
-    'https://telegra.ph/file/dae0156e5f48573f016da.mp4',
-    'https://telegra.ph/file/3e2871e714f435d173b9e.mp4',
-    'https://telegra.ph/file/714982b9fedfa3b4d8d2b.mp4',
-    'https://telegra.ph/file/876edfcec678b64eac480.mp4',
-    'https://telegra.ph/file/6b1ab5aec5fa81cf40005.mp4',
-    'https://telegra.ph/file/b4834b434888de522fa49.mp4'
+    'https://graph.org/file/029d180541fd41b22f53e-0aac1c97f29b92f514.jpg',
+    'https://graph.org/file/0f4f50c3e2aca115c77af-255637f91a2200c7e9.jpg',
+    'https://graph.org/file/1ee37151e064ecc202dbd-d0da242165e9934fc1.jpg',
+    'https://graph.org/file/d55127df1c6946f1f4344-c65636e1ca06695848.jpg',
+    'https://graph.org/file/f2c8a48a47678d84d563e-229aab4b8d897dd915.jpg',
+    'https://graph.org/file/5068fdb9af03471a3e474-6947712a443fc3cadb.jpg',
+    'https://graph.org/file/7529eaeb6d59f0e20e0ce-164e47fa94d9329797.jpg',
+    'https://graph.org/file/1d4a9bf34acafaf9d3731-e5038adb58e3713887.jpg',
+    'https://graph.org/file/7c7fdd54843954c1a48d3-b13f76f53f31947da0.jpg'
 ]
 
 @Client.on_message(filters.command("start") & filters.incoming)
